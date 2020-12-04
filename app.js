@@ -51,7 +51,7 @@ app.get('/callback', function(req, res){
 
 app.post('/webhooks', function(req, res){
 
-    console.log('webhook' + req.body);
+    console.log('webhook', req.body);
 
     console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
 
@@ -136,7 +136,6 @@ app.post('/buy', function(req, res){
     mercadopago.preferences.create(preference)
     .then(function(response){
         global.init_point = response.body.init_point
-        console.log(response)
         res.render('confirm', {global})
     })
     .catch(function(e){
