@@ -49,7 +49,7 @@ app.post('/webhooks', function(req, res){
 
     console.log('webhook' + req.body);
 
-    res.status(200).end('ok');
+    res.status(200).send(req.body);
 
 })
 
