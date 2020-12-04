@@ -63,9 +63,9 @@ app.post('/buy', function(req, res){
 
         back_urls:{
 
-            success: url + 'success',
-            pending: url + 'pending',
-            failure: url + 'failure'
+            success: host + url + 'success',
+            pending: host + url + 'pending',
+            failure: host + url + 'failure'
 
         },
 
