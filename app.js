@@ -25,6 +25,34 @@ app.get('/detail', function (req, res) {
     res.render('detail', req.query);
 });
 
+app.get('/callback', function(req, res){
+
+    if(req.query.status.includes('success')){
+        res.render('success', {
+            payment_type : req.query.payment_type,
+            external_reference : req.query.external_reference,
+            collection_id : req.query.collection_id
+        })
+    }
+
+    if(req.query.status.includes('pending')){
+        res.render('pending')
+    }
+
+    if(req.query.status.includes('failure')){
+        res.render('failure')
+    }
+
+})
+
+app.post('/webhooks', function(req, res){
+
+    console.log(req.body);
+
+    res.status(200).end('ok');
+
+})
+
 app.post('/buy', function(req, res){
 
     const host = 'http://localhost:3000/'
@@ -33,20 +61,24 @@ app.post('/buy', function(req, res){
 
     let preference = {
 
-        // back_urls:{
+        back_urls:{
 
-        //     success: url + 'success',
-        //     pending: url + 'pending',
-        //     failure: url + 'failure'
+            success: url + 'success',
+            pending: url + 'pending',
+            failure: url + 'failure'
 
-        // },
+        },
+
+        notification_url: host + 'webhooks',
+
+        auto_return:'approved',
 
         payment_methods:{
 
             payer:{
 
-                name:'Lalo',
-                surname:'Landa',
+                name:"Lalo",
+                surname:"Landa",
                 email:'test_user_63274575@testuser.com',
                 phone:{
                     area_code:'11',
@@ -84,8 +116,8 @@ app.post('/buy', function(req, res){
             title:req.query.title,
             description:'Dispositivo móvil de Tienda e-commerce',
             picture_url:req.query.img,
-            quantity:Number(req.query.unit),
-            unit_price:Number(req.query.price)
+            quantity:1,
+            unit_price: 15000
 
             }
 
@@ -98,9 +130,11 @@ app.post('/buy', function(req, res){
     mercadopago.preferences.create(preference)
     .then(function(response){
         global.init_point = response.body.init_point
-        res.render('confirm')
+        console.log(response)
+        res.render('confirm', {global})
     })
     .catch(function(e){
+        console.log(e)
         res.send(e)
     })
 
