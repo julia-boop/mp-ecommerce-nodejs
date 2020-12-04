@@ -45,7 +45,7 @@ app.get('/callback', function(req, res){
 
 })
 
-app.get('/webhooks', function(req, res){
+app.post('/webhooks', function(req, res){
 
     console.log('webhook' + req.body);
 
