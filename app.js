@@ -49,7 +49,7 @@ app.post('/webhooks', function(req, res){
 
     console.log('webhook' + req.body);
 
-    res.status(200).send(req.body);
+    res.status(200).end('ok');
 
 })
 
@@ -69,7 +69,7 @@ app.post('/buy', function(req, res){
 
         },
 
-        notification_url: host + 'webhooks',
+        notification_url: 'https://certificacion-m.herokuapp.com/',
 
         auto_return:'approved',
 
