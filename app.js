@@ -55,7 +55,7 @@ app.post('/webhooks', function(req, res){
 
 app.post('/buy', function(req, res){
 
-    const host = 'http://localhost:3000/'
+    const host = 'https://certificacion-m.herokuapp.com/'
 
     const url = 'callback?status='
 
