@@ -69,7 +69,7 @@ app.post('/buy', function(req, res){
 
         },
 
-        notification_url: 'https://certificacion-m.herokuapp.com/',
+        notification_url: 'https://certificacion-m.herokuapp.com/webhooks',
 
         auto_return:'approved',
 
