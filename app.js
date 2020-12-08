@@ -119,11 +119,11 @@ app.post('/buy', function(req, res){
             {
 
             id:'1234',
-            title:'Producto seleccionado',
+            title: req.body.title,
             description:'Dispositivo móvil de Tienda e-commerce',
             picture_url:'https://certificacion-m.herokuapp.com/assets/003.jpg',
             quantity:1,
-            unit_price: 15000
+            unit_price: Number(req.body.price)
 
             }
 
