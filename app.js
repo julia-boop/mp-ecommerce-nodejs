@@ -136,6 +136,7 @@ app.post('/buy', function(req, res){
     .then(function(response){
         global.init_point = response.body.init_point
         res.render('confirm', {global})
+        console.log(response)
     })
     .catch(function(e){
         console.log(e)
