@@ -53,7 +53,6 @@ app.post('/webhooks', function(req, res){
 
     console.log('webhook', req.body);
 
-    console.log('jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj');
 
     res.status(200).send(req.body).end('ok');
 
@@ -79,24 +78,24 @@ app.post('/buy', function(req, res){
 
         auto_return:'approved',
 
-        payment_methods:{
+        payer:{
 
-            payer:{
-
-                name:"Lalo",
-                surname:"Landa",
-                email:'test_user_63274575@testuser.com',
-                phone:{
-                    area_code:'11',
-                    number:'22223333'
-                },
-                address:{
-                    zip_code:'1111',
-                    street_name:'False',
-                    street_number:123
-                }
-
+            name:"Lalo",
+            surname:"Landa",
+            email:'test_user_63274575@testuser.com',
+            phone:{
+                area_code:'11',
+                number:22223333
             },
+            address:{
+                zip_code:'1111',
+                street_name:'False',
+                street_number:123
+            }
+
+        },
+
+        payment_methods:{
 
             excluded_payment_methods: [
 
@@ -119,9 +118,9 @@ app.post('/buy', function(req, res){
             {
 
             id:'1234',
-            title:req.query.title,
+            title:'Producto seleccionado',
             description:'Dispositivo móvil de Tienda e-commerce',
-            picture_url:req.query.img,
+            picture_url:'https://certificacion-m.herokuapp.com/assets/003.jpg',
             quantity:1,
             unit_price: 15000
 
