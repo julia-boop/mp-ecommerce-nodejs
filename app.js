@@ -26,7 +26,8 @@ app.get('/', function (req, res) {
 });
 
 app.get('/detail', function (req, res) {
-    res.render('detail', req.query);
+    let query = req.query
+    res.render('detail', {query:query});
 });
 
 app.get('/callback', function(req, res){
