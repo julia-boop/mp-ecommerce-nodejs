@@ -33,6 +33,7 @@ app.get('/detail', function (req, res) {
 app.get('/callback', function(req, res){
 
     if(req.query.status.includes('success')){
+        console.log('hello')
         res.render('success', {
             payment_type : req.query.payment_type,
             external_reference : req.query.external_reference,
@@ -47,8 +48,6 @@ app.get('/callback', function(req, res){
     if(req.query.status.includes('failure')){
         res.render('failure')
     }
-
-    return res.status(404).end()
 
 })
 
