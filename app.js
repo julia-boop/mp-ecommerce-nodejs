@@ -69,9 +69,9 @@ app.post('/buy', function(req, res){
 
         back_urls:{
 
-            success: host + url + 'success',
-            pending: host + url + 'pending',
-            failure: host + url + 'failure'
+            success: 'https://certificacion-m.herokuapp.com/callback?status=success',
+            pending: 'https://certificacion-m.herokuapp.com/callback?status=pending',
+            failure: 'https://certificacion-m.herokuapp.com/callback?status=failure'
 
         },
 
@@ -96,12 +96,12 @@ app.post('/buy', function(req, res){
 
         payment_methods: {
             excluded_payment_methods: [
-                {id: 'amex'}//No permito American Express
+                {id: 'amex'}
             ],
             excluded_payment_types: [
-                {id:'atm'}//No permito pagos en cajeros automaticos
+                {id:'atm'}
             ],
-            installments: 6//cantidad máxima de cuotas.
+            installments: 6
         },
 
         items:[
