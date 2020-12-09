@@ -1,6 +1,6 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
-var port = process.env.PORT || 3000
+var port = process.env.PORT || 3000;
 const mercadopago = require('mercadopago');
 
 mercadopago.configure({
@@ -48,14 +48,14 @@ app.get('/callback', function(req, res){
         res.render('failure')
     }
 
+    return res.status(404).end()
+
 })
 
 app.post('/webhooks', function(req, res){
 
-    console.log('webhook', req.body);
-
-
-    res.status(200).send(req.body).end('ok');
+    console.log('webhooks:', req.body)
+    res.status(200).send(req.body)
 
 })
 
@@ -79,39 +79,29 @@ app.post('/buy', function(req, res){
 
         auto_return:'approved',
 
-        payer:{
-
-            name:"Lalo",
-            surname:"Landa",
-            email:'test_user_63274575@testuser.com',
-            phone:{
-                area_code:'11',
-                number:22223333
+        payer: {
+            name: 'Lalo',
+            surname: 'Landa',
+            email: 'test_user_63274575@testuser.com',
+            phone: {
+                area_code: '11',
+                number: 22223333,
             },
-            address:{
-                zip_code:'1111',
-                street_name:'False',
-                street_number:123
+            address: {
+                street_name: 'False',
+                street_number: 123,
+                zip_code: '1111'
             }
-
         },
 
-        payment_methods:{
-
+        payment_methods: {
             excluded_payment_methods: [
-
-                {id:'visa'}
-    
+                {id: 'amex'}//No permito American Express
             ],
-    
             excluded_payment_types: [
-    
-                {id:'atm'}
-    
+                {id:'atm'}//No permito pagos en cajeros automaticos
             ],
-    
-            installments: 6
-
+            installments: 6//cantidad máxima de cuotas.
         },
 
         items:[
